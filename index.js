@@ -3,6 +3,8 @@ import cookieParser from 'cookie-parser'
 import compression from 'compression'
 import cors from 'cors'
 import helmet from 'helmet'
+import columnsRouter from './routes/columnRoutes.js'
+import taskRouter from './routes/taskRoutes.js'
 
 
 const app = express()
@@ -16,11 +18,8 @@ app.use(cors())
 
 const port = 3000
 
-// To Do - Implement Routes
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+app.use('/api/v1/columns', columnsRouter);
+app.use('/api/v1/tasks', taskRouter);
 
 app.listen(port, () => {
   console.log(`Kanban API listening on port ${port}`)
